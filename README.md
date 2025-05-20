@@ -1,6 +1,6 @@
 Online monitoring
 
-in this pipeline data is collected from three different sources:
+in this pipeline, data is collected from three different sources:
   * CSV files
   * Real-time activity logs through API
   * Loading datasets from repositories
