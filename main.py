@@ -67,8 +67,17 @@ pandas.to_datetime(dataset["timestamp"]) # to be able to use the details of it
 dataset["timestamp"].fillna(method = "pad", inplace = True) # pad uses previous value as replacement
 
 # separating and saving the details as different features
-dataset["key_pressed"] = dataset["details"].keys
-dataset["task_name"] = dataset["details"].values
+# dataset["key_pressed"] = dataset["details"].keys
+# dataset["task_name"] = dataset["details"].values
+ordered_keys = []
+ordered_values = []
+for dict_ in dataset['details']:
+      for key, value in dict_.items():
+        ordered_keys.append(key)
+        ordered_values.append(value)    
+
+dataset["key_pressed"] = ordered_keys
+dataset["task_name"] = ordered_values
 
 # filtering specific events
 events = dataset["event_type"].filter(items = ["keyboard", "task_switch"])
