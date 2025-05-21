@@ -80,7 +80,10 @@ dataset["key_pressed"] = ordered_keys
 dataset["task_name"] = ordered_values
 
 # filtering specific events
-events = dataset["event_type"].filter(items = ["keyboard", "task_switch"])
+# events = dataset["event_type"].filter(items = ["keyboard", "task_switch"])
+items = ["keyboard", "task_switch"]
+events = dataset["event_type"][dataset["event_type"].isin(items)]
+events
 
 # categoricl to numerical fro model training purpose
 enc = OneHotEncoder(handle_unknown = "ignore")
