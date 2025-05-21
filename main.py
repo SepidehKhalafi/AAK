@@ -57,13 +57,16 @@ dataset = pandas.DataFrame(data)
 
 dataset.info() # gives us an overview on data, null values and counts
 
+
+# dataset["timestamp"] = dataset['timestamp'].replace("INVALID_DATE", None)
 threshold = pandas.Timestamp.now()
+dataset["timestamp"] = pandas.to_datetime(dataset["timestamp"], errors = "coerce") # coerce to replace invalid with null
 # for item in dataset["timestamp"]:
 #         if item > threshold:
-dataset.loc[dataset["timestamp"] > threshold, "timstamp"] = None # replacing invalid dates with null
+dataset["timestamp"] = dataset.loc[dataset["timestamp"] > threshold, "timstamp"] = None # replacing invalid dates with null
 # if we know the start date, we can add another condition for it here
-dataset.loc[dataset["timestamp"] == "INVALID_DATE", "timstamp"] = None
-pandas.to_datetime(dataset["timestamp"]) # to be able to use the details of it
+# dataset.loc[dataset["timestamp"] == "INVALID_DATE", "timstamp"] = None
+# pandas.to_datetime(dataset["timestamp"]) # to be able to use the details of it
 dataset["timestamp"].fillna(method = "pad", inplace = True) # pad uses previous value as replacement
 
 # separating and saving the details as different features
