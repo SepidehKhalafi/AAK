@@ -1,7 +1,7 @@
 
 import pandas
 import requests
-import datetime
+import datetime # to extract new features which has not been used
 import psycopg2
 import sqlalchemy
 from sklearn.preprocessing import OneHotEncoder
